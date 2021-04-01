@@ -1,0 +1,46 @@
+{
+  "name": "json-sorter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "autoprefixer": "^9",
+    "core-js": "^3.6.5",
+    "hjson": "^3.2.2",
+    "lodash": "^4.17.21",
+    "postcss": "^7",
+    "register-service-worker": "^1.7.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+    "vue": "^3.0.0",
+    "vue-class-component": "^8.0.0-0"
+  },
+  "devDependencies": {
+    "@types/hjson": "^2.4.2",
+    "@types/jest": "^24.0.19",
+    "@types/lodash": "^4.14.168",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-pwa": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-plugin-unit-jest": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "@vue/test-utils": "^2.0.0-0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^7.0.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.2",
+    "typescript": "~4.1.5",
+    "vue-cli-plugin-tailwind": "~2.0.6",
+    "vue-jest": "^5.0.0-0"
+  }
+}
