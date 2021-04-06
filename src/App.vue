@@ -1,5 +1,12 @@
 <template>
-  <Home></Home>
+  <div class="flex flex-col min-h-screen">
+    <main class="flex-grow">
+      <Home></Home>
+    </main>
+    <footer class="bg-gray-900">
+      <p class="p-2 text-center text-gray-300">Copyright © kako-jun</p>
+    </footer>
+  </div>
 </template>
 
 <script lang="ts">
