@@ -2,16 +2,26 @@
   <div class="home">
     <div class="bg-white dark:bg-gray-600">
       <h1 class="text-gray-900 dark:text-white text-4xl font-bold pt-4">JSON sorter</h1>
-      <h2 class="text-gray-600 dark:text-gray-300 mt-8">
+      <a
+        href="https://github.com/kako-jun/json-sorter"
+        target="_blank"
+        class="underline text-blue-400 hover:text-blue-200"
+        ><fa icon="info-circle" class="mr-1 h-4 w-4 inline"></fa> How to use</a
+      >
+      <div class="mt-4 flex justify-center">
+        <img src="@/assets/taiiku_maehe_narae.png" class="logo" />
+      </div>
+      <h2 class="text-gray-600 dark:text-gray-300 mt-4">
         input JSON:
       </h2>
 
-      <div class="mt-4">
+      <div class="mt-4 flex justify-center">
         <button
           @click="onPasteFromClipboardClicked"
           class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
         >
-          Paste from clipboard.
+          <fa icon="paste" class="mr-1 h-4 w-4 inline"></fa>
+          Paste from clipboard
         </button>
 
         <label
@@ -19,7 +29,8 @@
           class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold ml-2 py-2 px-4 rounded inline-flex items-center cursor-pointer"
         >
           <span class="glyphicon glyphicon-folder-open" aria-hidden="true">
-            Load from file.
+            <fa icon="upload" class="mr-1 h-4 w-4 inline"></fa>
+            Load from file
           </span>
           <input type="file" id="upload" style="display:none" @change="onLoadFromFileClicked" />
         </label>
@@ -29,7 +40,7 @@
         class="lines-number mt-3 p-2"
         data-type="note"
         cols="100"
-        rows="21"
+        rows="10"
         placeholder="{ key1: value1, key2: value2 }"
       ></textarea>
 
@@ -74,9 +85,10 @@
       <div class="mt-8">
         <button
           @click="onSortClicked"
-          class="bg-blue-500 hover:bg-blue-700 text-white ml-4 py-2 px-4 rounded-full text-xl"
+          class="bg-blue-500 hover:bg-blue-700 text-white ml-4 py-2 px-4 rounded-full text-xl h-14 w-72"
         >
-          Sort.
+          <fa icon="sort-alpha-down" class="mr-1 h-5 w-5 inline"></fa>
+          Sort
         </button>
       </div>
 
@@ -91,13 +103,15 @@
           @click="onCopyToClipboardClicked"
           class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
         >
-          Copy to clipboard.
+          <fa icon="clipboard" class="mr-1 h-4 w-4 inline"></fa>
+          Copy to clipboard
         </button>
         <button
           @click="onSaveAsFileClicked"
           class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold ml-2 py-2 px-4 rounded inline-flex items-center"
         >
-          <span>Save as file.</span>
+          <fa icon="download" class="mr-1 h-4 w-4 inline"></fa>
+          Save as file
         </button>
       </div>
     </div>
@@ -319,18 +333,7 @@ export default class Home extends Vue {
 <style scoped lang="scss">
 @import "../assets/lines_number.min.css";
 
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.logo {
+  width: 300px;
 }
 </style>
