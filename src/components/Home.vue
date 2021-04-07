@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <div class="bg-white dark:bg-gray-600">
-      <h1 class="title text-gray-900 dark:text-white text-4xl font-bold pt-4">JSON sorter</h1>
+    <div class="bg-gray-700">
+      <h1 class="title text-white text-4xl font-bold pt-4">JSON sorter</h1>
       <a
         href="https://github.com/kako-jun/json-sorter"
         target="_blank"
@@ -11,14 +11,14 @@
       <div class="mt-4 flex justify-center">
         <img src="@/assets/taiiku_maehe_narae.png" class="logo" />
       </div>
-      <h2 class="text-gray-600 dark:text-gray-300 mt-4">
-        input JSON:
+      <h2 class="text-gray-300 mt-4">
+        Input JSON:
       </h2>
 
       <div class="mt-4 flex justify-center">
         <button
           @click="onPasteFromClipboardClicked"
-          class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+          class="bg-gray-300 text-gray-800 hover:bg-gray-400 font-bold py-2 px-4 rounded inline-flex items-center"
         >
           <fa icon="paste" class="mr-1 h-4 w-4 inline"></fa>
           Paste from clipboard
@@ -26,18 +26,18 @@
 
         <label
           for="upload"
-          class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold ml-2 py-2 px-4 rounded inline-flex items-center cursor-pointer"
+          class="bg-gray-300 text-gray-800 hover:bg-gray-400 font-bold ml-2 py-2 px-4 rounded inline-flex items-center cursor-pointer"
         >
           <span class="glyphicon glyphicon-folder-open" aria-hidden="true">
             <fa icon="upload" class="mr-1 h-4 w-4 inline"></fa>
             Load from file
           </span>
-          <input type="file" id="upload" style="display:none" @change="onLoadFromFileClicked" />
+          <input type="file" accept=".json, .hjson" id="upload" style="display:none" @change="onLoadFromFileClicked" />
         </label>
       </div>
       <textarea
         v-model="srcJSON"
-        class="lines-number mt-3 p-2"
+        class="lines-number mt-3 p-2 max-w-full"
         data-type="note"
         cols="100"
         rows="10"
@@ -57,8 +57,8 @@
             <span class="ml-2 text-gray-300">Sort array by key's value.</span>
             <input
               v-model="keyNames"
-              :disabled="sortingArrayByKeyValueEnabled ? disabled : ''"
-              type="email"
+              :disabled="!sortingArrayByKeyValueEnabled"
+              type="text"
               class="form-input ml-2 p-2 rounded"
               placeholder="key_name1, key_name2, ..."
             />
@@ -84,8 +84,9 @@
       </div>
       <div class="mt-8">
         <button
+          :disabled="srcJSON === ''"
           @click="onSortClicked"
-          class="bg-blue-500 hover:bg-blue-700 text-white ml-4 py-2 px-4 rounded-full text-xl h-14 w-72"
+          class="bg-blue-600 text-white hover:bg-blue-700 disabled:bg-blue-800 disabled:text-gray-300 ml-4 py-2 px-4 rounded-full text-xl h-14 w-72"
         >
           <fa icon="sort-alpha-down" class="mr-1 h-5 w-5 inline"></fa>
           Sort
@@ -93,22 +94,24 @@
       </div>
 
       <hr class="mt-12" />
-      <h2 class="text-gray-600 dark:text-gray-300 mt-8 mb-4">
-        output JSON:
+      <h2 class="text-gray-300 mt-8 mb-4">
+        Output JSON:
       </h2>
-      <textarea v-model="distJSON" class="lines-number p-2" data-type="note" cols="100" rows="21"></textarea>
+      <textarea v-model="distJSON" class="lines-number p-2 max-w-full" data-type="note" cols="100" rows="21"></textarea>
 
       <div class="mt-2 pb-12">
         <button
+          :disabled="distJSON === ''"
           @click="onCopyToClipboardClicked"
-          class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+          class="bg-gray-300 text-gray-800 hover:bg-gray-400 disabled:bg-gray-500 font-bold py-2 px-4 rounded inline-flex items-center"
         >
           <fa icon="clipboard" class="mr-1 h-4 w-4 inline"></fa>
           Copy to clipboard
         </button>
         <button
+          :disabled="distJSON === ''"
           @click="onSaveAsFileClicked"
-          class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold ml-2 py-2 px-4 rounded inline-flex items-center"
+          class="bg-gray-300 text-gray-800 hover:bg-gray-400 disabled:bg-gray-500 font-bold ml-2 py-2 px-4 rounded inline-flex items-center"
         >
           <fa icon="download" class="mr-1 h-4 w-4 inline"></fa>
           Save as file
@@ -233,7 +236,7 @@ export default class Home extends Vue {
   download(url: string): void {
     const a = document.createElement("a");
     a.href = url;
-    a.download = url;
+    a.download = "output.json";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -248,37 +251,14 @@ export default class Home extends Vue {
   }
 
   onLoadFromFileClicked(event: any): void {
-    let file = event.target.files[0],
-      name = file.name,
-      size = file.size,
-      type = file.type,
-      errors = "";
-
-    //上限サイズは3MB
-    if (size > 4 * 1000 * 1000) {
-      errors += "ファイルサイズは4MBまでです。\n";
-    }
-
-    //拡張子は .json のみ許可
-    if (type != "application/json" && type != "application/hjson") {
-      errors += ".json、.hjsonファイルのみサポートしています。\n";
-    }
-
-    if (errors) {
-      //errorsが存在する場合は内容をalert
-      alert(errors);
-      //valueを空にしてリセットする
-      event.currentTarget.value = "";
-    }
+    const filePath = event.target.files[0];
 
     const fileReader = new FileReader();
-
     fileReader.addEventListener("load", (e: any) => {
-      // console.log(e.target.result);
       this.srcJSON = e.target.result;
     });
 
-    fileReader.readAsText(event.target.files[0]);
+    fileReader.readAsText(filePath);
   }
 
   onSortClicked(): void {
