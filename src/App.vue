@@ -5,13 +5,19 @@
     </main>
     <footer class="bg-gray-900">
       <p class="p-2 text-center text-gray-300">
-        Copyright © kako-jun
+        © 2021 kako-jun
         <!-- <fa icon="github-square" type="fab"></fa> -->
         <!-- <fa icon="git-alt" type="fab" class="h-4 w-4 inline"></fa> -->
-        <a href="https://github.com/kako-jun/json-sorter" target="_blank"
-          ><fa icon="home" class="h-4 w-4 inline"></fa
+        <a
+          href="https://github.com/kako-jun/json-sorter"
+          target="_blank"
+          class="underline text-blue-400 hover:text-blue-200"
+          ><fa icon="code" class="h-4 w-4 inline"></fa
         ></a>
-        <a href="https://twitter.com/kako_jun_42" target="_blank"
+        <a href="https://llll-ll.com" target="_blank" class="underline text-blue-400 hover:text-blue-200"
+          ><fa icon="home" class="ml-1 h-4 w-4 inline"></fa
+        ></a>
+        <a href="https://twitter.com/kako_jun_42" target="_blank" class="underline text-blue-400 hover:text-blue-200"
           ><fa icon="twitter" type="fab" class="ml-1 h-4 w-4 inline"></fa
         ></a>
       </p>

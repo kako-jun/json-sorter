@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="bg-white dark:bg-gray-600">
-      <h1 class="text-gray-900 dark:text-white text-4xl font-bold pt-4">JSON sorter</h1>
+      <h1 class="title text-gray-900 dark:text-white text-4xl font-bold pt-4">JSON sorter</h1>
       <a
         href="https://github.com/kako-jun/json-sorter"
         target="_blank"
@@ -65,19 +65,19 @@
           </label>
         </div>
         <div class="mt-4">
-          <span class="text-gray-300">Indent Type:</span>
+          <span class="text-gray-300">Indent type:</span>
         </div>
         <div>
           <label class="inline-flex items-center">
-            <input v-model="indentType" type="radio" class="form-radio" name="indentType" value="2spaces" />
+            <input v-model="indentType" type="radio" class="form-radio h-6 w-6" name="indentType" value="2spaces" />
             <span class="ml-2 text-gray-300">2 spaces</span>
           </label>
           <label class="inline-flex items-center ml-6">
-            <input v-model="indentType" type="radio" class="form-radio" name="indentType" value="4spaces" />
+            <input v-model="indentType" type="radio" class="form-radio h-6 w-6" name="indentType" value="4spaces" />
             <span class="ml-2 text-gray-300">4 spaces</span>
           </label>
           <label class="inline-flex items-center ml-6">
-            <input v-model="indentType" type="radio" class="form-radio" name="indentType" value="1tab" />
+            <input v-model="indentType" type="radio" class="form-radio h-6 w-6" name="indentType" value="1tab" />
             <span class="ml-2 text-gray-300">1 tab</span>
           </label>
         </div>
@@ -289,7 +289,13 @@ export default class Home extends Vue {
     console.log("this.indentType", this.indentType);
 
     const src = Hjson.parse(this.srcJSON);
-    const keyNames = _.uniq(this.keyNames.replaceAll(" ", "").split(","));
+    const keyNames = _.uniq(
+      this.keyNames
+        .replaceAll(" ", "")
+        .replaceAll("'", "")
+        .replaceAll('"', "")
+        .split(",")
+    );
 
     const sortedObject = this.sort(
       src,
@@ -332,6 +338,10 @@ export default class Home extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import "../assets/lines_number.min.css";
+
+.title {
+  text-shadow: 0px 0px 8px #222222;
+}
 
 .logo {
   width: 300px;
