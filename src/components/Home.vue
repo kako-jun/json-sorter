@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="bg-gray-700">
-      <h1 class="title text-white text-4xl font-bold pt-4">JSON sorter</h1>
+      <h1 class="title text-white text-4xl font-bold pt-4">JSON Sorter</h1>
       <a
         href="https://github.com/kako-jun/json-sorter"
         target="_blank"
