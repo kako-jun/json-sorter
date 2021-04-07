@@ -42,6 +42,7 @@
         cols="100"
         rows="10"
         placeholder="{ key1: value1, key2: value2 }"
+        spellcheck="false"
       ></textarea>
 
       <div class="mt-8">
@@ -93,11 +94,26 @@
         </button>
       </div>
 
+      <div
+        v-if="errorOccurred"
+        class="bg-red-100 border border-red-400 text-red-700 mt-4 px-4 py-3 rounded"
+        role="alert"
+      >
+        <span>Input JSON is invalid.</span>
+      </div>
+
       <hr class="mt-12" />
       <h2 class="text-gray-300 mt-8 mb-4">
         Output JSON:
       </h2>
-      <textarea v-model="distJSON" class="lines-number p-2 max-w-full" data-type="note" cols="100" rows="21"></textarea>
+      <textarea
+        v-model="distJSON"
+        class="lines-number p-2 max-w-full"
+        data-type="note"
+        cols="100"
+        rows="21"
+        spellcheck="false"
+      ></textarea>
 
       <div class="mt-2 pb-12">
         <button
@@ -144,6 +160,7 @@ export default class Home extends Vue {
   sortingArrayByKeyValueEnabled = false;
   keyNames = "";
   indentType = "2spaces";
+  errorOccurred = false;
 
   sortKeysInObjectByName(src: any): any {
     const sortedArray = _.sortBy(_.toPairs(src), (p) => {
@@ -268,7 +285,15 @@ export default class Home extends Vue {
     console.log("this.keyNames", this.keyNames);
     console.log("this.indentType", this.indentType);
 
-    const src = Hjson.parse(this.srcJSON);
+    let src = "";
+    try {
+      src = Hjson.parse(this.srcJSON);
+      this.errorOccurred = false;
+    } catch (error) {
+      this.errorOccurred = true;
+      return;
+    }
+
     const keyNames = _.uniq(
       this.keyNames
         .replaceAll(" ", "")
