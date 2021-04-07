@@ -1,14 +1,14 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "64c2889af2cd5d6af8c2",
-    "url": "/css/index.e43ce2fd.css"
+    "revision": "4d40b8777bb49f22e556",
+    "url": "/css/index.551c172e.css"
   },
   {
     "revision": "f1d93e07ac5908fde920c9aa446e8b62",
     "url": "/img/taiiku_maehe_narae.f1d93e07.png"
   },
   {
-    "revision": "1f936a05f879ba8aca5fd5393f7e0f0c",
+    "revision": "78b0eb015a43cb548e7dfc90601341a2",
     "url": "/index.html"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/js/chunk-vendors.8f26bdc6.js"
   },
   {
-    "revision": "64c2889af2cd5d6af8c2",
-    "url": "/js/index.fdaa73bb.js"
+    "revision": "4d40b8777bb49f22e556",
+    "url": "/js/index.18b63107.js"
   },
   {
     "revision": "2fe023e12ff9b0a40fcb3b08513237f7",

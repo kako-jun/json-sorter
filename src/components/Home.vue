@@ -233,10 +233,10 @@ export default class Home extends Vue {
     sortingArrayByKeyValueEnabled: boolean,
     keyNames: string[]
   ): any {
-    console.log("src", src);
-    console.log("sortingKeysInObjectByNameEnabled", sortingKeysInObjectByNameEnabled);
-    console.log("sortingArrayByKeyValueEnabled", sortingArrayByKeyValueEnabled);
-    console.log("keyNames", keyNames);
+    // console.info("src", src);
+    // console.info("sortingKeysInObjectByNameEnabled", sortingKeysInObjectByNameEnabled);
+    // console.info("sortingArrayByKeyValueEnabled", sortingArrayByKeyValueEnabled);
+    // console.info("keyNames", keyNames);
 
     let sorted = src;
     if (_.isArray(src)) {
@@ -244,7 +244,7 @@ export default class Home extends Vue {
     } else if (_.isObject(src)) {
       sorted = this.sortObject(src, sortingKeysInObjectByNameEnabled, sortingArrayByKeyValueEnabled, keyNames);
     } else {
-      // console.log("else");
+      // do nothing.
     }
 
     return sorted;
@@ -279,11 +279,11 @@ export default class Home extends Vue {
   }
 
   onSortClicked(): void {
-    console.log("this.srcJSON", this.srcJSON);
-    console.log("this.sortingKeysInObjectByNameEnabled", this.sortingKeysInObjectByNameEnabled);
-    console.log("this.sortingArrayByKeyValueEnabled", this.sortingArrayByKeyValueEnabled);
-    console.log("this.keyNames", this.keyNames);
-    console.log("this.indentType", this.indentType);
+    // console.info("this.srcJSON", this.srcJSON);
+    // console.info("this.sortingKeysInObjectByNameEnabled", this.sortingKeysInObjectByNameEnabled);
+    // console.info("this.sortingArrayByKeyValueEnabled", this.sortingArrayByKeyValueEnabled);
+    // console.info("this.keyNames", this.keyNames);
+    // console.info("this.indentType", this.indentType);
 
     let src = "";
     try {
@@ -309,7 +309,7 @@ export default class Home extends Vue {
       keyNames
     );
 
-    console.log(sortedObject);
+    // console.info(sortedObject);
 
     switch (this.indentType) {
       case "2spaces":
